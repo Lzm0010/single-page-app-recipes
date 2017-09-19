@@ -1,0 +1,174 @@
+<div class="grid-100 row controls">
+  <div class="grid-50">
+    <h2 ng-if="vm.recipe.name">{{vm.recipe.name}}</h2>
+    <h2 ng-if="!vm.recipe.name">Add New Recipe</h2>
+  </div>
+  <div class="grid-50">
+    <div class="flush-right">
+      <button ng-click="vm.saveRecipe(vm.recipe)">Save Recipe</button>
+      <button ng-click="vm.redirectHome()" class="secondary">Cancel</button>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+
+<div class="grid-100 row">
+  <div class="grid-20">
+    <p class="label-spacing">
+      <label> Name </label>
+    </p>
+  </div>
+  <div class="grid-40">
+    <p>
+      <input ng-model="vm.recipe.name" type="text" required>
+      <span ng-show="vm.recipe.name.$touched && vm.recipe.name.$invalid">The name is required.</span>
+    </p>
+  </div>
+</div>
+<div class="clear"></div>
+
+<div class="grid-100 row">
+  <div class="grid-20">
+    <p class="label-spacing">
+      <label> Description </label>
+    </p>
+  </div>
+  <div class="grid-60">
+    <p>
+      <textarea ng-model="vm.recipe.description"></textarea>
+    </p>
+  </div>
+</div>
+<div class="clear"></div>
+
+<div class="grid-100 row">
+  <div class="grid-20">
+    <p class="label-spacing">
+      <label> Category </label>
+    </p>
+  </div>
+  <div class="grid-30">
+    <p>
+      <select ng-model="vm.recipe.category" ng-options="category.name as category.name for category in vm.categories" >
+      </select>
+    </p>
+  </div>
+</div>
+<div class="clear"></div>
+
+<div class="grid-100 row">
+  <div class="grid-20">
+    <p class="label-spacing">
+      <label> Prep Time </label>
+    </p>
+  </div>
+  <div class="grid-20">
+    <p>
+      <input ng-model="vm.recipe.prepTime" type="number">
+    </p>
+  </div>
+</div>
+<div class="clear"></div>
+
+<div class="grid-100 row">
+  <div class="grid-20">
+    <p class="label-spacing">
+      <label> Cook Time </label>
+    </p>
+  </div>
+  <div class="grid-20">
+    <p>
+      <input ng-model="vm.recipe.cookTime" type="number">
+    </p>
+  </div>
+</div>
+<div class="clear"></div>
+
+<div class="grid-100 row">
+  <div class="grid-20">
+    <p class="label-spacing">
+      <label> Ingredients </label>
+    </p>
+  </div>
+  <div class="grid-30">
+    <p class="label-spacing">
+      <label> Item </label>
+    </p>
+  </div>
+  <div class="grid-30">
+    <p class="label-spacing">
+      <label> Condition </label>
+    </p>
+  </div>
+  <div class="grid-15">
+    <p class="label-spacing">
+      <label> Amount </label>
+    </p>
+  </div>
+
+  <div ng-repeat="ingredient in vm.recipe.ingredients" class="ingredient-row">
+    <div class="prefix-20 grid-30">
+      <p>
+        <select ng-model="ingredient.foodItem" ng-options="fooditem.name as fooditem.name for fooditem in vm.fooditems" >
+        </select>
+      </p>
+    </div>
+    <div class="grid-30">
+      <p>
+        <input ng-model="ingredient.condition" type="text">
+      </p>
+    </div>
+    <div class="grid-15">
+      <p>
+        <input ng-model="ingredient.amount" type="text">
+      </p>
+    </div>
+    <div class="grid-5 pad-top">
+      <p class="flush-right">
+        <a ng-click="vm.deleteIngredient($index)" class="no-action-link"> <img src="images/delete.svg" height="12px"> </a>
+      </p>
+    </div>
+  </div>
+
+  <div class="prefix-20 grid-80 add-row">
+    <p>
+      <button ng-click="vm.addIngredient()">+ Add Another Ingredient</button>
+    </p>
+  </div>
+
+</div>
+<div class="clear"></div>
+
+<div class="grid-100 row">
+  <div class="grid-20">
+    <p class="label-spacing">
+      <label> Steps </label>
+    </p>
+  </div>
+  <div class="grid-75">
+    <p class="label-spacing">
+      <label> Description </label>
+    </p>
+  </div>
+
+  <div ng-repeat="step in vm.recipe.steps" class="step-row">
+    <div class="prefix-20 grid-75">
+      <p>
+        <input ng-model="step.description" type="text">
+      </p>
+    </div>
+    <div class="grid-5 pad-top">
+      <p class="flush-right">
+        <a ng-click="vm.deleteStep($index)" class="no-action-link"> <img src="images/delete.svg" height="12px"> </a>
+      </p>
+    </div>
+  </div>
+
+  <div class="prefix-20 grid-80 add-row">
+    <p>
+     <button ng-click="vm.addStep()">+ Add Another Step</button>
+    </p>
+  </div>
+
+</div>
+<div class="clear"></div>
